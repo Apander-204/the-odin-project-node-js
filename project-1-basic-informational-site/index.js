@@ -1,33 +1,21 @@
-const http = require('http');
-const fs = require('fs');
+const path = require('path');
+const express = require('express');
+const app = express();
 
-const server = http.createServer((req, res) => {
-
-    let page;
-
-    switch(req.url) {
-        case '/':
-            page = './files/index.html';
-            break;
-        case '/about':
-            page = './files/about.html';
-            break;
-        case '/contact-me':
-            page = './files/contact-me.html';
-            break;
-        default:
-            page = './files/404.html';
-            break; 
-    }
-
-    fs.readFile(page, (err, data) => {
-        if (err) {
-            console.log(err);
-        }
-        res.end(data);
-    });
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, 'files', 'index.html'));
+});
+app.get("/about", (req, res) => {
+    res.sendFile(path.join(__dirname, 'files', 'about.html'));
+});
+app.get("/contact-me", (req, res) => {
+    res.sendFile(path.join(__dirname, 'files', 'contact-me.html'));
+});
+app.use((req, res) => {
+    res.status(404);
+    res.sendFile(path.join(__dirname, 'files', '404.html'));
 });
 
-server.listen(3000, 'localhost', (req, res) => {
-    console.log("Server listened");
+app.listen(3000, (req, res) => {
+    console.log("Port 3000 listen");
 });
