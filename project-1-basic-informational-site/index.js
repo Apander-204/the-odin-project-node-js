@@ -1,6 +1,9 @@
 const path = require('path');
 const express = require('express');
+require('dotenv').config();
 const app = express();
+
+const PORT = process.env.PORT;
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, 'files', 'index.html'));
@@ -16,6 +19,6 @@ app.use((req, res) => {
     res.sendFile(path.join(__dirname, 'files', '404.html'));
 });
 
-app.listen(3000, (req, res) => {
-    console.log("Port 3000 listen");
+app.listen(PORT || 3000, (req, res) => {
+    console.log("Port listen", PORT || 3000);
 });

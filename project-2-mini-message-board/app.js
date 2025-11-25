@@ -1,6 +1,9 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+require('dotenv').config();
+
+const PORT = process.env.PORT;
 
 const index = require('./routers/index');
 
@@ -24,6 +27,6 @@ app.locals.messages = [
   }
 ];
 
-app.listen(3000, () => {
+app.listen(PORT || 3000, () => {
     console.log("Success");
 });
