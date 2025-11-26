@@ -1,0 +1,11 @@
+<% if(error) { %>
+    <div>
+        <h1><%= error %></h1>
+    </div>
+<% } %>
+
+<form action="/register" method="post">
+    <input name="username" />
+    <input name="password" />
+    <button>Зарегистрироваться</button>
+</form>
