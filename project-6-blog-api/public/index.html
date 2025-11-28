@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+</head>
+<body>
+    <header>
+        <h3>Blog API</h3>
+        <a href="./register.html">Регистрация</a>
+        <a href="./login.html">Вход</a>
+        <a href="./logout.html">Выход</a>
+    </header>
+    <main>
+        <a href="./new-post.html">Выложить новый пост</a>
+
+        <div id="posts">
+
+        </div>
+    </main>
+    <script>
+        async function loadPosts() {
+            try {
+                const response = await fetch('/api/getallposts');
+            
+                if (!response.ok) {
+                    throw new Error('Ошибка при загрузке постов');
+                }
+            
+                const posts = await response.json();
+                displayPosts(posts);
+            } catch (error) {
+                console.error('Ошибка:', error);
+                document.getElementById('posts').innerHTML = '<p>Ошибка при загрузке постов</p>';
+            }
+        }
+
+        function displayPosts(posts) {
+            const postsContainer = document.getElementById('posts');
+        
+            if (!posts || posts.length === 0) {
+                postsContainer.innerHTML = '<p>Пока нет постов</p>';
+                return;
+            }
+
+            const postsHTML = posts.map(post => `
+                <div class="post" >
+                    <h3>${post.title || 'Без названия'}</h3>
+                    <p>${post.message || ''}</p>
+                </div>
+            `).join('');
+
+            postsContainer.innerHTML = postsHTML;
+        }
+
+        document.addEventListener('DOMContentLoaded', loadPosts);
+    </script>
+</body>
+</html>

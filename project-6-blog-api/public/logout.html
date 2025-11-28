@@ -1,0 +1,8 @@
+<h3>Вы действительно хотите выйти?</h3>
+<button onclick="logout()">Выйти</button>
+<script>
+    function logout() {
+        localStorage.removeItem('token');
+        window.location.href = '/login.html';
+    }
+</script>
