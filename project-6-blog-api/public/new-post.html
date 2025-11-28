@@ -1,7 +1,7 @@
 <form id="newPost">
     <input placeholder="Заголовок" name="title"/>
     <input placeholder="Сообщение" name="message"/>
-    <button type="submit" >Отправить</button>
+    <button type="submit" >Send</button>
 </form>
 
 <div id="status"></div>
@@ -29,7 +29,7 @@
         const result = await response.json();
 
         if(response.ok) {
-            document.getElementById('status').innerHTML = `<p>Пост отправлен</p>`;
+            document.getElementById('status').innerHTML = `<p>The post has been sent</p>`;
         }
 
         setTimeout(() => {

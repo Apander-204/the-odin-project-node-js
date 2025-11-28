@@ -14,7 +14,7 @@ function authMiddleware(req, res, next) {
         const token = req.headers.authorization?.split(' ')[1];
         
         if (!token) {
-            return res.status(401).json({ error: 'Токен отсутствует' });
+            return res.status(401).json({ error: 'The token is missing' });
         }
 
         const decoded = jwt.verify(token, process.env.SECRET_KEY);
@@ -22,7 +22,7 @@ function authMiddleware(req, res, next) {
         next();
         
     } catch (error) {
-        res.status(401).json({ error: 'Неверный токен' });
+        res.status(401).json({ error: 'Invalid token' });
     }
 }
 

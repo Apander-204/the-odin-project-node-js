@@ -22,9 +22,9 @@ CREATE TABLE IF NOT EXISTS product_car_compatibility (
 );
 
 INSERT INTO products (name, category, price, brand) VALUES
-('Тормозные колодки передние', 'Тормоза', 2500, 'Bosch'),
-('Масляный фильтр', 'Фильтры', 800, 'Mann'),
-('Воздушный фильтр', 'Фильтры', 1200, 'Bosch');
+('Front brake pads', 'Brakes', 2500, 'Bosch'),
+('Oil filter', 'Brakes', 800, 'Mann'),
+('Air filter', 'Brakes', 1200, 'Bosch');
 
 INSERT INTO cars (brand, model) VALUES
 ('Toyota', 'Camry'),

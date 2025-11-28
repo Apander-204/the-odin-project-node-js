@@ -8,12 +8,12 @@
 <body>
     <header>
         <h3>Blog API</h3>
-        <a href="./register.html">Регистрация</a>
-        <a href="./login.html">Вход</a>
-        <a href="./logout.html">Выход</a>
+        <a href="./register.html">Sign in</a>
+        <a href="./login.html">Login</a>
+        <a href="./logout.html">Log out</a>
     </header>
     <main>
-        <a href="./new-post.html">Выложить новый пост</a>
+        <a href="./new-post.html">Send a new post</a>
 
         <div id="posts">
 
@@ -25,14 +25,14 @@
                 const response = await fetch('/api/getallposts');
             
                 if (!response.ok) {
-                    throw new Error('Ошибка при загрузке постов');
+                    throw new Error('Error loading posts');
                 }
             
                 const posts = await response.json();
                 displayPosts(posts);
             } catch (error) {
-                console.error('Ошибка:', error);
-                document.getElementById('posts').innerHTML = '<p>Ошибка при загрузке постов</p>';
+                console.error('Error:', error);
+                document.getElementById('posts').innerHTML = '<p>Error loading posts</p>';
             }
         }
 
@@ -40,13 +40,13 @@
             const postsContainer = document.getElementById('posts');
         
             if (!posts || posts.length === 0) {
-                postsContainer.innerHTML = '<p>Пока нет постов</p>';
+                postsContainer.innerHTML = '<p>There are no posts yet</p>';
                 return;
             }
 
             const postsHTML = posts.map(post => `
                 <div class="post" >
-                    <h3>${post.title || 'Без названия'}</h3>
+                    <h3>${post.title || 'Untitled'}</h3>
                     <p>${post.message || ''}</p>
                 </div>
             `).join('');

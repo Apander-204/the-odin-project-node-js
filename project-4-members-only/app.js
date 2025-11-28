@@ -16,7 +16,7 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 
 app.use(session({
-    secret: 'your-secret-key-here-make-it-long-and-random',
+    secret: process.env.SESSION_KEY,
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false }
@@ -30,13 +30,13 @@ passport.use(new LocalStrategy(
         const user = await db.findUserByUsername(username);
         
         if (!user) {
-            return done(null, false, { message: 'Неверное имя пользователя' });
+            return done(null, false, { message: 'Invalid user name' });
         }
         const isMatch = await bcrypt.compare(password, user.password);
         if (isMatch) {
             return done(null, user);
         } else {
-            return done(null, false, { message: 'Неверный пароль' });
+            return done(null, false, { message: 'Invalid password' });
         }
     }
 ));

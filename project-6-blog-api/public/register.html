@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sign up</title>
 </head>
 <body>
 <form id="registerForm">
     <input placeholder="Login" name="username"/>
     <input placeholder="Password" name="password"/>
-    <button type="submit" >Зарегистрироваться</button>
+    <button type="submit" >Register</button>
 </form>
 
 <div id="message"></div>
@@ -37,7 +37,7 @@
                 if (response.ok) {
                     document.getElementById('message').innerHTML = `
                         <p style="color: green;">✅ ${result.message}</p>
-                        <p>Токен: ${result.token}</p>
+                        <p>Token: ${result.token}</p>
                     `;
                     localStorage.setItem('token', result.token);
                 } else {

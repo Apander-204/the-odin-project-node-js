@@ -32,7 +32,7 @@ async function postRegister(req, res) {
     const existingUser = await db.findUserByUsername(username);
 
     if (existingUser) {
-        return res.render("register", { error: 'Пользователь уже существует' });
+        return res.render("register", { error: 'The user already exists' });
     }
             
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -55,7 +55,7 @@ async function postLogout(req, res) {
 
 async function postUpload(req, res) {
     if (!req.file) {
-        return res.status(400).send('Файл не загружен');
+        return res.status(400).send('The file has not been uploaded');
     }
     await db.addFile(req.file.filename, req.user);
     const filesArr = await db.findUserFiles(req.user);

@@ -13,7 +13,7 @@ async function postRegister(req, res) {
     const search = await db.findUserByUsername(username);
 
     if(search) {
-        res.send("Такой аккаунт уже существует");
+        res.send("Such an account already exists");
     } else {
     const hashedPassword = await bcrypt.hash(password, 10);
     await db.registerUser(username, hashedPassword);
@@ -28,7 +28,7 @@ async function postRegister(req, res) {
     );
 
     res.json({ 
-        message: 'Успешная регистрация!',
+        message: 'Successful sign in!',
         token: token
     });
     }
@@ -41,12 +41,12 @@ async function postLogin(req, res) {
     const search = await db.findUserByUsername(username);
 
     if(!search) {
-        res.send("Неверный логин или пароль");
+        res.send("Invalid username or password");
     } else {
         const validPassword = await bcrypt.compare(password, search.password);
 
         if (!validPassword) {
-            return res.status(400).json({ error: 'Неверный логин или пароль' });
+            return res.status(400).json({ error: 'Invalid username or password' });
         }
 
         const token = jwt.sign(
@@ -55,7 +55,7 @@ async function postLogin(req, res) {
         );
 
         res.json({ 
-            message: 'Успешный вход!', 
+            message: 'Successful login!', 
             token: token 
         });
     }
@@ -69,7 +69,7 @@ async function postNewPost(req, res) {
     await db.newPost(title, message, userId);
 
     res.json({
-        message: "Пост создан!"
+        message: "The post has been created!"
     });
 }
 

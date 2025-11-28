@@ -20,5 +20,5 @@ app.use((req, res) => {
 });
 
 app.listen(PORT || 3000, (req, res) => {
-    console.log("Port listen", PORT || 3000);
+    console.log("Port listen on port", PORT || 3000);
 });

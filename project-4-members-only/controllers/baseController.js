@@ -37,7 +37,7 @@ async function postSignUp(req, res) {
 
     const existingUser = await db.findUserByUsername(username);
     if (existingUser) {
-        return res.render("sign-up", { error: 'Пользователь уже существует' });
+        return res.render("sign-up", { error: 'The user already exists' });
     }
         
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -59,7 +59,7 @@ async function postNewMessage(req, res) {
         await db.newMessage(title, message, req.user);
         res.redirect("/");
     } else {
-        res.send("Ошибка отправки, скорее всего вы не вошли в аккаунт");
+        res.send("Sending error, most likely you are not logged in to your account");
     }
 }
 
@@ -74,7 +74,7 @@ async function postClub(req, res) {
         res.redirect("/");
     }
     else {
-        res.send("Неверный пароль");
+        res.send("Invalid password");
     }
 }
 

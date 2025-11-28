@@ -8,21 +8,21 @@
 <body>
 
     <% if(user) { %>
-        <h3>Здравствуйте, <%= user.username %></h3>
+        <h3>Welcome, <%= user.username %></h3>
         <form action="/upload" method="post" enctype="multipart/form-data">
             <input type="file" name="document">
-            <button type="submit">Загрузить</button>
+            <button type="submit">Upload</button>
         </form>
-        <a href="/logout">Выйти</a>
+        <a href="/logout">Log Out</a>
 
-        <h3>Список ваших файлов: </h3>
+        <h3>A list of your files: </h3>
         <% for(let i = 0; i < files.length; i++) { %>
             <h3><%= files[i].filename %></h3>
         <% } %>
 
     <% } else { %>
-        <a href="/register">Регистрация</a>
-        <a href="/login">Войти</a>
+        <a href="/register">Register</a>
+        <a href="/login">Login</a>
     <% } %>
     
 </body>
